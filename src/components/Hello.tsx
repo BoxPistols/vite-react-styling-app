@@ -1,5 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import './Hello.scss'
+import Box from './Box'
 
 const { useEffect, useState, Fragment } = React
 
@@ -14,7 +17,7 @@ const texts = {
     l: '24px',
 }
 
-export default ({ name }) => {
+const Hello = ({ name }) => {
     const [color, setColor] = useState(colors.Sea)
     const [text, setText] = useState(texts.s)
 
@@ -31,8 +34,13 @@ export default ({ name }) => {
 
     return (
         <Fragment>
-            <h1>Hello {name}!</h1>
+            <h1>Box</h1>
+            <Box hoge='xxx' />
 
+            <hr />
+
+            <h1>Hello {name}!</h1>
+            <h2>Title Design</h2>
             <select value={color} onChange={(e) => setColor(e.target.value)}>
                 {Object.entries(colors).map(([name, value]) => (
                     <option key={`color--${name}`} value={value}>
@@ -53,4 +61,9 @@ export default ({ name }) => {
             <h2>{text}</h2>
         </Fragment>
     )
+}
+export default Hello
+
+Hello.propTypes = {
+    name: PropTypes.string,
 }
