@@ -1,10 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
-
-import './Hello.scss'
 import Box from './Box'
-
-const { useEffect, useState, Fragment } = React
+import './Hello.scss'
 
 const colors = {
     Sea: '#a2ccb6',
@@ -18,8 +15,12 @@ const texts = {
 }
 
 const Hello = ({ name }) => {
+    const [boxState, setBoxState] = useState('2')
+
     const [color, setColor] = useState(colors.Sea)
     const [text, setText] = useState(texts.s)
+
+    const [boxStyleState, setBoxStyleState] = useState('')
 
     useEffect(() => {
         const h2 = document.querySelector('h2')
@@ -32,10 +33,22 @@ const Hello = ({ name }) => {
         h2.style.fontSize = text
     }, [text])
 
+    useEffect(() => {
+        const bx = document.querySelector('.section > .bx')
+        console.log(window.getComputedStyle(bx))
+    }, [boxStyleState])
+
     return (
         <Fragment>
             <h1>Box</h1>
-            <Box hoge='xxx' />
+            <Box hoge='xxx' huga={boxState} />
+            {/* <Box hoge='xxx' huga={boxState} /> */}
+
+            <input
+                value={boxState}
+                type='number'
+                onChange={(e) => setBoxState(e.target.value)}
+            />
 
             <hr />
 

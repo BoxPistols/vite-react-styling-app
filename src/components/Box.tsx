@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+
 import '../assets/css/flexbox-template.scss'
 import classNames from 'classnames'
 
 const box_classes = classNames('bx')
 // const boxN = classNames('box')
 
-const Box = (hoge: any) => {
-    const [boxState, setBoxState] = useState('box')
+const Box = ({ hoge, huga }) => {
+    // const [boxStyleState, setBoxStyleState] = useState('')
+
+    // useEffect(() => {
+    //     const bx = document.querySelector('.section > .bx')
+    //     console.log(window.getComputedStyle(bx))
+    // }, [boxStyleState])
 
     return (
         <div>
@@ -16,13 +23,15 @@ const Box = (hoge: any) => {
                     {/* in section */}
                     <div className='copy-value' data-clipboard-text=' '>
                         @include flex<span>&#40;</span>
-                        <span> </span>
+                        <span>{hoge} </span>
                         <span>&#41;</span>
                     </div>
                     <code className='code'></code>
                     <code className='code'></code>
                     <code className='code option'></code>
-                    <div className={[box_classes, boxState].join(' ').trim()}>
+                    <div
+                        className={[box_classes, 'box' + huga].join(' ').trim()}
+                    >
                         <button className='mod btn btn-primary' type='button'>
                             1
                         </button>
@@ -63,3 +72,8 @@ const Box = (hoge: any) => {
 }
 
 export default Box
+
+Box.propTypes = {
+    hoge: PropTypes.string,
+    huga: PropTypes.string,
+}
