@@ -1,9 +1,10 @@
 {
     "prettier.tabWidth": 4,
     "vue-helper.indent-size": 4,
+    "dart.previewHotReloadOnSaveWatcher": true,
+    "bookmarks.saveBookmarksInProject": true,
+    "editor.formatOnSave": true,
     "files.autoSave": "afterDelay",
     "prettier.vueIndentScriptAndStyle": true,
-    "editor.formatOnSave": true,
-    "dart.previewHotReloadOnSaveWatcher": true,
-    "bookmarks.saveBookmarksInProject": true
+    "csscomb.formatOnSave": true
 }

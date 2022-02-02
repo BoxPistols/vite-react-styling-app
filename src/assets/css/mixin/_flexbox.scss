@@ -1,0 +1,259 @@
+// TODO: Add New Common Mixin
+/**
+  * ======= Flex Box =======
+  * Example:
+  *   @include flex(center, center)
+  *   @include flex(null, end, column, nowrap)
+*/
+@mixin flex($justify:null, $align:null, $column:null, $wrap:null) {
+    display:flex;
+    /**
+      * justify-content / Horizontal ===（1st Argument）
+      * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
+    */
+    @if $justify==start {
+        // Left align |||--- default
+        justify-content:flex-start;
+    } @else if $justify==end {
+        // Align right ---|||
+        justify-content:flex-end;
+    } @else if $justify==center {
+        // Centering -|||-
+        justify-content:center;
+    } @else if $justify==between {
+        // Both ends |-|-|
+        justify-content:space-between;
+    } @else if $justify==around {
+        // Elements Equivalent -|-|-|-
+        justify-content:space-around;
+    } @else if $justify==evenly {
+        // Spacing Equivalent -|-|-|-
+        justify-content:space-evenly;
+    } @else {
+        // null = write: null
+    }
+    /**
+      * align-items / Vertical |||（2nd Argument）
+      * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
+    */
+    @if $align==start {
+        // Upper Align ⁻⁻⁻ default
+        align-items:flex-start;
+    } @else if $align==end {
+        // BottomAlign ___
+        align-items:flex-end;
+    } @else if $align==center {
+        // Centering ---
+        align-items:center;
+    } @else if $align==baseline {
+        // Base Line -=-
+        align-items:baseline;
+    } @else if $align==stretch {
+        // Expand Height |||
+        align-items:stretch;
+    } @else if $align==null {
+        // empty
+    }
+    /**
+      * Column === |||（3rd Argument）
+      * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
+    */
+    @if $column==row {
+        // Horizontal Column === default
+        flex-direction:row;
+    } @else if $column==column {
+        // Vertical Column |||
+        flex-direction:column;
+    } @else if $column==reverse {
+        // ToUp ↑↑↑
+        flex-direction:column-reverse;
+    } @else if $column==null {
+        // empty
+    }
+    /**
+      * Wrap = Fold at the edge -|（4th Argument）
+      * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
+    */
+    @if $wrap==wrap {
+        // Do Wrap --|↓
+        flex-wrap:wrap;
+    } @else if $wrap==nowrap {
+        // Not Wrap --|--> *default
+        flex-wrap:nowrap;
+    } @else if $wrap==reverse {
+        // Upper From Bottom ↑↑↑
+        flex-wrap:wrap-reverse;
+    } @else if $wrap==null {
+        // empty
+    }
+}
+/* ======== Set Flex Mixin ======= */
+// map-get data
+$box-number:(
+    1: (
+        jc: " ",
+        ai: " ",
+    ),
+    2: (
+        jc: "center",
+        ai: " ",
+    ),
+    3: (
+        jc: "end",
+        ai: " ",
+    ),
+    4: (
+        jc: "null",
+        ai: "start",
+    ),
+    5: (
+        jc: "null",
+        ai: "center",
+    ),
+    6: (
+        jc: "null",
+        ai: "end",
+    ),
+    7: (
+        jc: "center",
+        ai: "start",
+    ),
+    8: (
+        jc: "center",
+        ai: "center",
+    ),
+    9: (
+        jc: "center",
+        ai: "end",
+    ),
+    10: (
+        jc: "end",
+        ai: "start",
+    ),
+    11: (
+        jc: "end",
+        ai: "center",
+    ),
+    12: (
+        jc: "end",
+        ai: "end",
+    ),
+    13: (
+        jc: "between",
+        ai: " ",
+    ),
+    14: (
+        jc: "around",
+        ai: " ",
+    ),
+    15: (
+        jc: "evenly",
+        ai: " ",
+    ),
+    16: (
+        jc: " ",
+        ai: "baseline",
+    ),
+    17: (
+        jc: " ",
+        ai: "stretch",
+    ),
+); // map-get loop
+@each $box-name, $property in $box-number {
+    .box#{$box-name} {
+        background-color:map-get($property, bg-color);@include flex(map-get($property, jc), map-get($property, ai));
+    }
+}
+// map-get data2
+$box-number2:(
+    18: (
+        jc: "null",
+        ai: "null",
+        cl: "column",
+    ),
+    19: (
+        jc: "null",
+        ai: "start",
+        cl: "column",
+    ),
+    20: (
+        jc: "null",
+        ai: "center",
+        cl: "column",
+    ),
+    21: (
+        jc: "center",
+        ai: "end",
+        cl: "column",
+    ),
+    22: (
+        jc: "null",
+        ai: "null",
+        cl: "reverse",
+    ),
+);
+@each $box-name2, $property in $box-number2 {
+    .box#{$box-name2} {
+        background-color:map-get($property, bg-color);@include flex(
+        map-get($property, jc),
+        map-get($property, ai),
+        map-get($property, cl)
+        );
+    }
+}
+// map-get data3
+$box-number3:(
+    23: (
+        jc: "",
+        ai: "",
+        cl: "",
+        wp: "",
+    ),
+    24: (
+        jc: "null",
+        ai: "null",
+        cl: "column",
+        wp: "",
+    ),
+    25: (
+        jc: "null",
+        ai: "null",
+        cl: "null",
+        wp: "wrap",
+    ),
+    26: (
+        jc: "null",
+        ai: "null",
+        cl: "null",
+        wp: "reverse",
+    ),
+    27: (
+        jc: "null",
+        ai: "null",
+        cl: "column",
+        wp: "wrap",
+    ),
+    28: (
+        jc: "null",
+        ai: "null",
+        cl: "reverse",
+        wp: "reverse",
+    ),
+);
+@each $box-name3, $property in $box-number3 {
+    .box#{$box-name3} {
+        background-color:map-get($property, bg-color);@include flex(
+        map-get($property, jc),
+        map-get($property, ai),
+        map-get($property, cl),
+        map-get($property, wp)
+        );
+    }
+}
+
+// Irregular
+.box16 {
+    >.mod:nth-child(2) {
+        min-height:60px;
+    }
+}
