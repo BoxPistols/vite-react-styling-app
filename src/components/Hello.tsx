@@ -20,7 +20,7 @@ const Hello = ({ name }) => {
     const [color, setColor] = useState(colors.Sea)
     const [text, setText] = useState(texts.s)
 
-    const [boxStyleState, setBoxStyleState] = useState('')
+    // const [boxStyleState, setBoxStyleState] = useState('')
 
     useEffect(() => {
         const h2 = document.querySelector('h2')
@@ -34,24 +34,31 @@ const Hello = ({ name }) => {
     }, [text])
 
     useEffect(() => {
-        const bx = document.querySelector('.section > .bx')
-        console.log(window.getComputedStyle(bx))
-    }, [boxStyleState])
+        const res = document.querySelector('.res')
+        let para = document.querySelector('.box' + boxState)
+        let compStyles = window.getComputedStyle(para)
+        res.textContent =
+            compStyles.getPropertyValue('justify-content') +
+            ', ' +
+            compStyles.getPropertyValue('align-items') +
+            ', ' +
+            compStyles.getPropertyValue('flex-direction') +
+            ', ' +
+            compStyles.getPropertyValue('flex-wrap')
+    }, [boxState])
 
     return (
         <Fragment>
             <h1>Box</h1>
-            <Box hoge='xxx' huga={boxState} />
-            {/* <Box hoge='xxx' huga={boxState} /> */}
-
+            <div className='res'></div>
             <input
                 value={boxState}
                 type='number'
                 onChange={(e) => setBoxState(e.target.value)}
             />
-
+            <Box hoge='xxx' huga={boxState} />
             <hr />
-
+            
             <h1>Hello {name}!</h1>
             <h2>Title Design</h2>
             <select value={color} onChange={(e) => setColor(e.target.value)}>
@@ -61,7 +68,6 @@ const Hello = ({ name }) => {
                     </option>
                 ))}
             </select>
-
             <select value={text} onChange={(e) => setText(e.target.value)}>
                 {Object.entries(texts).map(([name, value]) => (
                     <option key={`text--${name}`} value={value}>
@@ -69,7 +75,6 @@ const Hello = ({ name }) => {
                     </option>
                 ))}
             </select>
-
             <h1>{color}</h1>
             <h2>{text}</h2>
         </Fragment>

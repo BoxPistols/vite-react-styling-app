@@ -8,8 +8,6 @@ const box_classes = classNames('bx')
 // const boxN = classNames('box')
 
 const Box = ({ hoge, huga }) => {
-    // const [boxStyleState, setBoxStyleState] = useState('')
-
     // useEffect(() => {
     //     const bx = document.querySelector('.section > .bx')
     //     console.log(window.getComputedStyle(bx))
@@ -18,17 +16,19 @@ const Box = ({ hoge, huga }) => {
     return (
         <div>
             <div className='contents'>
+                <div className='box-val'></div>
+
                 {/* section */}
                 <section className='section'>
                     {/* in section */}
-                    <div className='copy-value' data-clipboard-text=' '>
+                    {/* <div className='copy-value' data-clipboard-text=' '>
                         @include flex<span>&#40;</span>
                         <span>{hoge} </span>
                         <span>&#41;</span>
-                    </div>
+                    </div> */}
+                    {/* <code className='code'></code>
                     <code className='code'></code>
-                    <code className='code'></code>
-                    <code className='code option'></code>
+                    <code className='code option'></code> */}
                     <div
                         className={[box_classes, 'box' + huga].join(' ').trim()}
                     >
@@ -40,6 +40,18 @@ const Box = ({ hoge, huga }) => {
                         </button>
                         <button className='mod btn btn-info' type='button'>
                             3
+                        </button>
+                        <button className='mod btn btn-info' type='button'>
+                            4
+                        </button>
+                        <button className='mod btn btn-info' type='button'>
+                            5
+                        </button>
+                        <button className='mod btn btn-info' type='button'>
+                            6
+                        </button>
+                        <button className='mod btn btn-info' type='button'>
+                            7
                         </button>
                     </div>
                 </section>
