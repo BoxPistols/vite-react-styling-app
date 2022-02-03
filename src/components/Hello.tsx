@@ -15,7 +15,7 @@ const texts = {
 }
 
 const Hello = ({ name }) => {
-    const [boxState, setBoxState] = useState('2')
+    const [boxState, setBoxState] = useState('1')
 
     const [color, setColor] = useState(colors.Sea)
     const [text, setText] = useState(texts.s)
@@ -34,31 +34,55 @@ const Hello = ({ name }) => {
     }, [text])
 
     useEffect(() => {
-        const res = document.querySelector('.res')
-        let para = document.querySelector('.box' + boxState)
-        let compStyles = window.getComputedStyle(para)
-        res.textContent =
-            compStyles.getPropertyValue('justify-content') +
-            ', ' +
-            compStyles.getPropertyValue('align-items') +
-            ', ' +
-            compStyles.getPropertyValue('flex-direction') +
-            ', ' +
-            compStyles.getPropertyValue('flex-wrap')
+        const res: Element | null = document.querySelector('.res')
+        let para: Element | null = document.querySelector('.box' + boxState)
+        if (para !== null && res !== null) {
+            let compStyles = window.getComputedStyle(para)
+
+            let resVal = (_v: string) => {
+                return compStyles.getPropertyValue(_v)
+            }
+
+            res.textContent =
+                resVal('justify-content').replace(/norma/g, 'null') +
+                ', ' +
+                resVal('align-items').replace(/norma/g, 'null') +
+                ', ' +
+                resVal('flex-direction').replace('row', 'null') +
+                ', ' +
+                resVal('flex-wrap').replace('nowrap', 'null')
+            // let result = res.textContent.includes('normal')
+            // if (res.textContent.includes('normal')) {
+            // return resVal(res.textContent.replace('normal', 'monkey'))
+            // }
+            // if (res.textContent.includes('normal')) {
+            //     console.log('あ')
+            //     res.textContent = 'hoge'
+            // } else {
+            //     console.log('の')
+            // }
+        }
     }, [boxState])
 
     return (
         <Fragment>
             <h1>Box</h1>
-            <div className='res'></div>
+            <h2>Result FlexBox</h2>
+            Box Number{' '}
             <input
                 value={boxState}
+                min='1'
+                max='28'
                 type='number'
                 onChange={(e) => setBoxState(e.target.value)}
             />
-            <Box hoge='xxx' huga={boxState} />
+            <div className=''>
+                <span className=''>@include(</span>
+                {/* <br /> */}
+                <b className='res'></b>)
+            </div>
+            <Box hoge={boxState} huga={boxState} />
             <hr />
-            
             <h1>Hello {name}!</h1>
             <h2>Title Design</h2>
             <select value={color} onChange={(e) => setColor(e.target.value)}>

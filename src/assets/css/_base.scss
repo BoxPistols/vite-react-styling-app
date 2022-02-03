@@ -94,8 +94,10 @@ body {
 
 .bx {
     overflow:auto;
+    max-width:600px;
     min-height:180px;
-    max-height:240px;
+    max-height:320px;
+    margin:auto;
     padding:12px;
 
     background:var(--bs-warning);

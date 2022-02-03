@@ -21,11 +21,12 @@ const Box = ({ hoge, huga }) => {
                 {/* section */}
                 <section className='section'>
                     {/* in section */}
-                    {/* <div className='copy-value' data-clipboard-text=' '>
-                        @include flex<span>&#40;</span>
+                    <div className='copy-value' data-clipboard-text=' '>
+                        {/* @include flex<span>&#40;</span> */}
+                        <span>#</span>
                         <span>{hoge} </span>
-                        <span>&#41;</span>
-                    </div> */}
+                        {/* <span>&#41;</span> */}
+                    </div>
                     {/* <code className='code'></code>
                     <code className='code'></code>
                     <code className='code option'></code> */}
@@ -44,7 +45,7 @@ const Box = ({ hoge, huga }) => {
                         <button className='mod btn btn-info' type='button'>
                             4
                         </button>
-                        <button className='mod btn btn-info' type='button'>
+                        {/* <button className='mod btn btn-info' type='button'>
                             5
                         </button>
                         <button className='mod btn btn-info' type='button'>
@@ -52,7 +53,7 @@ const Box = ({ hoge, huga }) => {
                         </button>
                         <button className='mod btn btn-info' type='button'>
                             7
-                        </button>
+                        </button> */}
                     </div>
                 </section>
 
